@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1220 860" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#374151"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1220" height="860" fill="#ffffff"/>
+
+  <text x="40" y="42" font-size="24" font-weight="700" fill="#111827">CLYVO VET — ChallengeAPI</text>
+  <text x="40" y="66" font-size="15" fill="#6b7280">Arquitetura de implantação — Sprint 3 · DevOps Tools &amp; Cloud Computing · Opção 1: ACR + ACI (containerização completa)</text>
+
+  <!-- Dev machine -->
+  <rect x="40" y="110" width="220" height="170" rx="10" fill="#eef2ff" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="150" y="138" font-size="15" font-weight="700" fill="#312e81" text-anchor="middle">Máquina do time</text>
+  <text x="150" y="160" font-size="12" fill="#374151" text-anchor="middle">git clone do repositório</text>
+  <text x="150" y="178" font-size="12" fill="#374151" text-anchor="middle">docker build (Dockerfile</text>
+  <text x="150" y="193" font-size="12" fill="#374151" text-anchor="middle">e Dockerfile.oracle)</text>
+  <text x="150" y="211" font-size="12" fill="#374151" text-anchor="middle">az login / Azure CLI</text>
+  <text x="150" y="238" font-size="11" fill="#6366f1" text-anchor="middle">(00 a 04_*.sh — todos os</text>
+  <text x="150" y="253" font-size="11" fill="#6366f1" text-anchor="middle">recursos via Azure CLI)</text>
+
+  <!-- ACR -->
+  <rect x="340" y="110" width="230" height="170" rx="10" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5"/>
+  <text x="455" y="138" font-size="15" font-weight="700" fill="#065f46" text-anchor="middle">Azure Container Registry</text>
+  <text x="455" y="160" font-size="11.5" fill="#374151" text-anchor="middle">clyvovetacr&lt;RM&gt;</text>
+  <text x="455" y="184" font-size="11.5" font-family="Consolas, monospace" fill="#065f46" text-anchor="middle">&lt;RM&gt;-clyvovet-oracle:v1</text>
+  <text x="455" y="202" font-size="10.5" fill="#6b7280" text-anchor="middle">(Dockerfile.oracle + script_bd.sql)</text>
+  <text x="455" y="226" font-size="11.5" font-family="Consolas, monospace" fill="#065f46" text-anchor="middle">&lt;RM&gt;-clyvovet-api:v1</text>
+  <text x="455" y="244" font-size="10.5" fill="#6b7280" text-anchor="middle">(Dockerfile da API)</text>
+
+  <line x1="260" y1="195" x2="336" y2="195" stroke="#374151" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <text x="298" y="185" font-size="11" fill="#374151" text-anchor="middle">docker push</text>
+
+  <!-- Key Vault -->
+  <rect x="340" y="310" width="230" height="120" rx="10" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5"/>
+  <text x="455" y="336" font-size="14" font-weight="700" fill="#7c2d12" text-anchor="middle">Azure Key Vault</text>
+  <text x="455" y="356" font-size="11" fill="#374151" text-anchor="middle">clyvovet-kv-&lt;RM&gt;</text>
+  <text x="455" y="376" font-size="10.5" fill="#7c2d12" text-anchor="middle">oracle-password</text>
+  <text x="455" y="392" font-size="10.5" fill="#7c2d12" text-anchor="middle">oracle-connection-template</text>
+  <text x="455" y="408" font-size="10.5" fill="#7c2d12" text-anchor="middle">acr-username / acr-password</text>
+
+  <!-- Storage Account -->
+  <rect x="40" y="440" width="220" height="120" rx="10" fill="#eef2ff" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="150" y="466" font-size="14" font-weight="700" fill="#312e81" text-anchor="middle">Storage Account</text>
+  <text x="150" y="486" font-size="11" fill="#374151" text-anchor="middle">clyvovetdata&lt;RM&gt;</text>
+  <text x="150" y="504" font-size="11" fill="#374151" text-anchor="middle">File Share:</text>
+  <text x="150" y="520" font-size="11" font-family="Consolas, monospace" fill="#312e81" text-anchor="middle">oracle-data-volume</text>
+  <text x="150" y="542" font-size="10" fill="#6b7280" text-anchor="middle">(persistência do banco)</text>
+
+  <!-- Resource Group box -->
+  <rect x="700" y="90" width="480" height="640" rx="12" fill="#fafafa" stroke="#9ca3af" stroke-width="1.4" stroke-dasharray="6,4"/>
+  <text x="720" y="116" font-size="14" font-weight="700" fill="#4b5563">Resource Group: rg-challengeapi (Azure · eastus)</text>
+
+  <!-- ACI oracle -->
+  <rect x="730" y="150" width="200" height="220" rx="10" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.6"/>
+  <text x="830" y="176" font-size="13.5" font-weight="700" fill="#1e3a8a" text-anchor="middle">ACI — &lt;RM&gt;-clyvovet-oracle</text>
+  <text x="830" y="198" font-size="11" fill="#374151" text-anchor="middle">oracle-xe:21-slim custom</text>
+  <text x="830" y="216" font-size="11" fill="#374151" text-anchor="middle">(imagem do ACR)</text>
+  <text x="830" y="238" font-size="11" font-family="Consolas, monospace" fill="#1e3a8a" text-anchor="middle">porta pública 1521</text>
+  <text x="830" y="260" font-size="10.5" fill="#6b7280" text-anchor="middle">volume: File Share</text>
+  <text x="830" y="276" font-size="10.5" fill="#6b7280" text-anchor="middle">/opt/oracle/oradata</text>
+  <text x="830" y="300" font-size="10.5" fill="#6b7280" text-anchor="middle">script_bd.sql roda</text>
+  <text x="830" y="316" font-size="10.5" fill="#6b7280" text-anchor="middle">sozinho no 1º boot</text>
+  <text x="830" y="340" font-size="10" fill="#6b7280" text-anchor="middle">FQDN próprio</text>
+  <text x="830" y="354" font-size="10" fill="#6b7280" text-anchor="middle">(&lt;RM&gt;-clyvovet-oracle...)</text>
+
+  <!-- ACI api -->
+  <rect x="960" y="150" width="200" height="220" rx="10" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.6"/>
+  <text x="1060" y="176" font-size="13.5" font-weight="700" fill="#1e3a8a" text-anchor="middle">ACI — &lt;RM&gt;-clyvovet-api</text>
+  <text x="1060" y="198" font-size="11" fill="#374151" text-anchor="middle">ASP.NET Core 8</text>
+  <text x="1060" y="216" font-size="11" fill="#374151" text-anchor="middle">(imagem do ACR)</text>
+  <text x="1060" y="238" font-size="11" font-family="Consolas, monospace" fill="#1e3a8a" text-anchor="middle">porta pública 8080</text>
+  <text x="1060" y="260" font-size="10.5" fill="#6b7280" text-anchor="middle">não-root (appuser)</text>
+  <text x="1060" y="284" font-size="10.5" fill="#6b7280" text-anchor="middle">connection string aponta</text>
+  <text x="1060" y="300" font-size="10.5" fill="#6b7280" text-anchor="middle">pro FQDN público do</text>
+  <text x="1060" y="316" font-size="10.5" fill="#6b7280" text-anchor="middle">ACI do Oracle (:1521)</text>
+  <text x="1060" y="340" font-size="10" fill="#6b7280" text-anchor="middle">FQDN próprio</text>
+  <text x="1060" y="354" font-size="10" fill="#6b7280" text-anchor="middle">(&lt;RM&gt;-clyvovet-api...)</text>
+
+  <!-- arrow api -> oracle -->
+  <path d="M930,260 C 945,260 945,260 956,260" fill="none" stroke="#374151" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <text x="943" y="248" font-size="9" fill="#374151" text-anchor="middle">rede pública</text>
+  <text x="943" y="278" font-size="9" fill="#374151" text-anchor="middle">:1521</text>
+
+  <!-- arrows from ACR/KV/Storage to the ACIs -->
+  <path d="M570,190 C 650,190 680,220 726,220" fill="none" stroke="#374151" stroke-width="1.4" stroke-dasharray="4,3" marker-end="url(#arrow)"/>
+  <path d="M570,370 C 650,370 690,300 726,260" fill="none" stroke="#ea580c" stroke-width="1.4" stroke-dasharray="4,3" marker-end="url(#arrow)"/>
+  <text x="640" y="345" font-size="9.5" fill="#ea580c" text-anchor="middle">lê segredos no deploy</text>
+  <path d="M260,480 C 500,480 600,300 726,265" fill="none" stroke="#6366f1" stroke-width="1.4" stroke-dasharray="4,3" marker-end="url(#arrow)"/>
+  <text x="470" y="470" font-size="9.5" fill="#6366f1" text-anchor="middle">volume montado (Azure File)</text>
+
+  <!-- Clients -->
+  <rect x="760" y="430" width="180" height="120" rx="10" fill="#fdf2f8" stroke="#ec4899" stroke-width="1.5"/>
+  <text x="850" y="458" font-size="13.5" font-weight="700" fill="#831843" text-anchor="middle">Navegador / Swagger</text>
+  <text x="850" y="480" font-size="11" fill="#374151" text-anchor="middle">GET/POST/PUT/DELETE</text>
+  <text x="850" y="498" font-size="11" font-family="Consolas, monospace" fill="#831843" text-anchor="middle">HTTP :8080</text>
+  <text x="850" y="520" font-size="10" fill="#6b7280" text-anchor="middle">Tutores · Pets</text>
+  <text x="850" y="534" font-size="10" fill="#6b7280" text-anchor="middle">Vacinas · Consultas</text>
+
+  <rect x="980" y="430" width="180" height="120" rx="10" fill="#fdf2f8" stroke="#ec4899" stroke-width="1.5"/>
+  <text x="1070" y="458" font-size="13.5" font-weight="700" fill="#831843" text-anchor="middle">Cliente SQL</text>
+  <text x="1070" y="480" font-size="11" fill="#374151" text-anchor="middle">sqlplus / DBeaver</text>
+  <text x="1070" y="498" font-size="11" font-family="Consolas, monospace" fill="#831843" text-anchor="middle">SQL :1521</text>
+  <text x="1070" y="520" font-size="10" fill="#6b7280" text-anchor="middle">SELECT após cada</text>
+  <text x="1070" y="534" font-size="10" fill="#6b7280" text-anchor="middle">operação de CRUD</text>
+
+  <line x1="850" y1="430" x2="1015" y2="373" stroke="#374151" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <line x1="1070" y1="430" x2="870" y2="373" stroke="#374151" stroke-width="1.6" marker-end="url(#arrow)"/>
+
+  <!-- Legend -->
+  <text x="40" y="770" font-size="12" fill="#4b5563">Fluxo: (1) build/push das 2 imagens (Banco e App) para o ACR  →  (2) Storage Account + Key Vault provisionados</text>
+  <text x="40" y="790" font-size="12" fill="#4b5563">(3) ACI do Oracle sobe puxando a imagem do ACR, monta o volume e roda script_bd.sql no 1º boot  →  (4) ACI da API sobe lendo a</text>
+  <text x="40" y="808" font-size="12" fill="#4b5563">connection string do Key Vault, já com o FQDN público do Oracle substituído  →  (5) clientes acessam cada ACI pelo seu próprio FQDN público</text>
+</svg>

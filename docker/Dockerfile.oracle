@@ -1,0 +1,14 @@
+# CLYVO VET - ChallengeAPI
+# Imagem customizada do banco Oracle XE, com o schema + carga inicial
+# (script_bd.sql) já embutidos, para ser publicada no ACR igual a imagem
+# da API - seguindo o mesmo padrao ensinado em aula (Dockerfile para o
+# Banco E para o App, os dois publicados no ACR).
+#
+# O gvenzl/oracle-xe roda automaticamente, na primeira inicializacao
+# (quando o volume de dados ainda esta vazio), todo *.sql colocado em
+# /container-entrypoint-initdb.d/ - exatamente onde copiamos o
+# script_bd.sql abaixo. Nas inicializacoes seguintes (banco ja existe)
+# esse script NAO roda de novo.
+FROM gvenzl/oracle-xe:21-slim
+
+COPY scripts/script_bd.sql /container-entrypoint-initdb.d/01_script_bd.sql
